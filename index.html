@@ -1,209 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Vignesh Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kavipriya - Portfolio</title>
   <style>
-    * {
+    body {
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+      line-height: 1.6;
+      background-color: #f4f4f4;
+      color: #333;
+      transition: background-color 0.3s, color 0.3s;
     }
-    html {
-      scroll-behavior: smooth;
-    }
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f5f7fa;
-      color: #2b2525;
+    body.dark-mode {
+      background-color: #333;
+      color: #f4f4f4;
     }
     header {
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      background: #007bff;
       color: white;
-      text-align: center;
-      padding: 3rem 1rem 5rem;
-      position: relative;
+      padding: 2rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
     }
     .profile-picture {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid #fff;
-  position: relative;
-  margin-top: -80px;
-  margin-bottom: 1rem;
-}
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
     .tabs {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      background: white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      gap: 10px;
+      padding: 1rem;
+      background: #fff;
+      border-bottom: 1px solid #ddd;
     }
-    .tabs button {
-      padding: 0.8rem 1.5rem;
-      background: #ffffff;
-      border: 2px solid #2a5298;
-      border-radius: 8px;
-      margin: 0.5rem;
+    .tab-btn {
+      padding: 10px 20px;
+      border: none;
+      background: none;
       cursor: pointer;
       font-size: 16px;
-      font-weight: 500;
-      color: #2a5298;
-      transition: all 0.3s ease;
+      transition: background-color 0.3s;
     }
-    .tabs button:hover,
-    .tabs button.active {
-      background: #135ee0;
-      color: #fff;
-      border-color: #1752b9;
+    .tab-btn.active, .tab-btn:hover {
+      background: #007bff;
+      color: white;
+      border-radius: 5px;
     }
     section {
-      max-width: 900px;
-      margin: auto;
-      background: white;
-      padding: 2rem;
-      margin-top: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
       display: none;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.5s ease;
+      padding: 2rem;
+      margin: 0 auto;
+      max-width: 800px;
     }
     section.active {
       display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
-    h2 {
-      color: #2a5298;
-      margin-bottom: 1rem;
-    }
-    ul li {
-      margin-bottom: 0.5rem;
     }
     .download-button {
       display: inline-block;
-      background: #2a5298;
+      padding: 10px 20px;
+      background: #007bff;
       color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
       text-decoration: none;
+      border-radius: 5px;
       margin-top: 1rem;
     }
     .download-button:hover {
-      background: #1e3c72;
-    }
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      background: #2a5298;
-      color: white;
-      margin-top: 3rem;
+      background: #0056b3;
     }
     .modal {
       display: none;
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5);
-      justify-content: center;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
       align-items: center;
+      justify-content: center;
     }
     .modal-content {
       background: white;
-      padding: 2rem;
-      border-radius: 10px;
-      width: 300px;
+      padding: 20px;
+      border-radius: 5px;
       text-align: center;
-      animation: fadeIn 0.3s ease-in-out;
+      width: 300px;
     }
     .modal-content input {
       width: 100%;
       padding: 10px;
-      margin-top: 10px;
-      font-size: 16px;
-      border-radius: 6px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
     }
     .modal-content button {
-      background: #2a5298;
+      padding: 10px 20px;
+      background: #007bff;
       color: white;
       border: none;
-      padding: 10px 20px;
-      margin-top: 1rem;
-      border-radius: 6px;
+      border-radius: 5px;
       cursor: pointer;
     }
-    .modal-content .error {
-      color: red;
-      font-size: 14px;
-      margin-top: 10px;
+    .modal-content button:hover {
+      background: #0056b3;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
+    .error {
+      color: red;
+      margin-bottom: 10px;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #007bff;
+      color: white;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
     }
     @media (max-width: 600px) {
-      .tabs button {
-        flex: 1 0 100%;
-        padding: 0.75rem;
-        font-size: 15px;
+      header {
+        flex-direction: column;
+        text-align: center;
       }
       .profile-picture {
-        position: static;
-        margin-bottom: 1rem;
+        margin: 0 auto 1rem;
       }
-      header {
-        padding-bottom: 2rem;
+      .tabs {
+        flex-wrap: wrap;
       }
-    }
-    .dark-mode {
-      background-color: #121212;
-      color: #f5f5f5;
-    }
-    .dark-mode section {
-      background-color: #1e1e1e;
-      color: #f5f5f5;
-    }
-    .dark-mode header {
-      background: linear-gradient(135deg, #000000, #2a2a2a);
-    }
-    .dark-mode .tabs button {
-      background-color: #2a2a2a;
-      color: #f5f5f5;
-      border-color: #555;
-    }
-    .dark-mode .tabs button.active,
-    .dark-mode .tabs button:hover {
-      background-color: #444;
-      color: #fff;
-    }
-    .dark-toggle {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: #fff;
-      border: none;
-      padding: 0.5rem 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 5px;
-      color: #2a5298;
     }
   </style>
 </head>
 <body>
 <header style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; padding: 2rem">
   <button class="dark-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
-  <img src="./Vignesh Mathiyalagan.jpg" alt="Profile Picture" class="profile-picture" id="profileImage" style="margin: 0 1rem 0 0; align-self: flex-start;">
+  <img src="./profile.jpg" alt="Profile Picture" class="profile-picture" id="profileImage" style="margin: 0 1rem 0 0; align-self: flex-start;">
   <div style="text-align: left;">
-    <h1>Vignesh Mathiyalagan</h1>
-    
+    <h1>Kavipriya</h1>
+    <p>iOS Developer | Passionate Coder</p>
   </div>
-  <p>Electronics Engineer | Cybersecurity Enthusiast</p>
   <input type="file" id="fileInput" accept="image/*" style="display:none">
   <button onclick="showModal()">Change Profile</button>
 </header>
@@ -221,55 +170,55 @@
 
 <section id="about" class="active">
   <h2>About Me</h2>
-  <p>I'm a <b>cybersecurity expert</b> and technology enthusiast with over 7 years of experience. I help organizations build secure systems and educate others about online safety. I’m passionate about ethical hacking, digital forensics, and emerging technologies.</p>
+  <p>I'm a dedicated <b>iOS developer</b> with a strong passion for coding and technology. Currently, I'm an intern at SkyneTBee Artificial Intelligence Pvt Ltd, where I contribute to building innovative mobile applications. I thrive on exploring new tech trends and creating user-friendly apps using Swift and SwiftUI. My goal is to develop impactful solutions that enhance user experiences through clean and efficient code.</p>
 </section>
 
 <section id="education">
   <h2>Education</h2>
-  <p>Anna University – B.E. in Electrical & Electronics Engineering</p>
+  <p>Anna University – B.E. in Computer Science and Engineering (2019–2023)</p>
 </section>
 
 <section id="skills">
   <h2>Skills</h2>
   <ul>
-    <li>Cybersecurity</li>
-    <li>Internet of Things</li>
-    <li>Cloud Computing</li>
+    <li>Swift & SwiftUI</li>
+    <li>iOS Development</li>
     <li>Python</li>
-    <li>IBM Cloud</li>
-    <li>Machine Learning & AI</li>
-    <li>Java</li>
-    <li>Blockchain</li>
-    <li>C++</li>
     <li>JavaScript</li>
+    <li>HTML & CSS</li>
+    <li>SQL</li>
+    <li>REST APIs</li>
+    <li>UI/UX Design</li>
+    <li>Git</li>
+    <li>Xcode</li>
   </ul>
 </section>
 
 <section id="projects">
   <h2>Projects</h2>
   <ul>
-    <li><a href="#">AI-Based Alternator Control System</a></li>
-    <li><a href="https://github.com/techtrainer20/blockchain.git" target="_blank">Cloud Security with IBM</a></li>
-    <li><a href="#">IBM Chatbot</a></li>
-    <li><a href="#">Generic Chatbot</a></li>
+    <li><a href="#">SmartTable SwiftUI App</a> – A responsive table view with pagination and filtering for real-time data display.</li>
+    <li><a href="https://github.com/kavipriya/audio-waveform" target="_blank">Audio Waveform App</a> – An iOS app featuring a WhatsApp-style audio waveform visualizer with horizontal scrolling.</li>
+    <li><a href="#">Tamil Learning App</a> – An iOS app to teach Tamil vocabulary and phrases with interactive quizzes.</li>
+    <li><a href="#">AI-Powered Chatbot</a> – A prototype chatbot integrated with AI APIs for natural language processing.</li>
   </ul>
 </section>
 
 <section id="resume">
   <h2>Resume</h2>
-  <a href="./Name list for IBM SkillsBuild.pdf" target="_blank" class="download-button">Download CV</a>
+  <a href="./resume.pdf" target="_blank" class="download-button">Download CV</a>
 </section>
 
 <section id="contact">
   <h2>Contact</h2>
-  <p>Email: <a href="mailto:vignesh@example.com">vignesh@example.com</a></p>
+  <p>Email: <a href="mailto:kavipriya@example.com">kavipriya@example.com</a></p>
   <p>Phone: +91-9876543210</p>
   <p>Location: Chennai, India</p>
   <div style="margin-top: 1rem;">
-    <a href="https://linkedin.com/in/vignesh" target="_blank">LinkedIn</a> |
-    <a href="https://github.com/vignesh" target="_blank">GitHub</a> |
-    <a href="https://twitter.com/vignesh" target="_blank">Twitter</a> |
-    <a href="https://instagram.com/vignesh" target="_blank">Instagram</a>
+    <a href="https://linkedin.com/in/kavipriya" target="_blank">LinkedIn</a> |
+    <a href="https://github.com/kavipriya" target="_blank">GitHub</a> |
+    <a href="https://twitter.com/kavipriya" target="_blank">Twitter</a> |
+    <a href="https://instagram.com/kavipriya" target="_blank">Instagram</a>
   </div>
 </section>
 
@@ -277,22 +226,22 @@
   <h2>Certificates</h2>
   <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
     <div style="text-align: center;">
-      <a href="https://skills.yourlearning.ibm.com/certificate/share/8a8c01e2efewogICJvYmplY3RJZCIgOiAiVVJMLVBMTFYyTzZVRlRVIiwKICAibGVhcm5lckNOVU0iIDogIjE4OTkzMTdSRUciLAogICJvYmplY3RUeXBlIiA6ICJBQ1RJVklUWSIKfQc61cb1757c-10" target="_blank">
-        <img src="./ibmcert.png" alt="MS-356" style="max-width: 200px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+      <a href="https://example.com/swiftui-cert" target="_blank">
+        <img src="./swiftui-cert.png" alt="SwiftUI Essentials" style="max-width: 200px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
       </a>
-      <p>Cybersecurity Essentials – Cisco</p>
+      <p>SwiftUI Essentials – Apple Developer</p>
     </div>
     <div style="text-align: center;">
-      <a href="https://example.com/certificate2" target="_blank">
-        <img src="certificate2.jpg" alt="Blockchain Fundamentals – IBM" style="max-width: 200px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+      <a href="https://example.com/ios-dev-cert" target="_blank">
+        <img src="./ios-dev-cert.jpg" alt="iOS Development Basics" style="max-width: 200px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
       </a>
-      <p>Blockchain Fundamentals – IBM</p>
+      <p>iOS Development Basics – Coursera</p>
     </div>
     <div style="text-align: center;">
-      <a href="https://example.com/certificate3" target="_blank">
-        <img src="certificate3.jpg" alt="Machine Learning with Python – Coursera" style="max-width: 200px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+      <a href="https://example.com/ai-fundamentals" target="_blank">
+        <img src="./ai-cert.jpg" alt="AI Fundamentals" style="max-width: 200px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
       </a>
-      <p>Machine Learning with Python – Coursera</p>
+      <p>AI Fundamentals – IBM</p>
     </div>
   </div>
 </section>
@@ -300,14 +249,14 @@
 <section id="experience">
   <h2>Experience</h2>
   <ul>
-    <li><b>Cybersecurity Analyst</b> – SecureNet Pvt Ltd (2021–Present)<br>Monitored, detected, and mitigated network threats using SIEM tools.</li>
-    <li><b>Penetration Tester</b> – Freelance (2019–2021)<br>Performed ethical hacking assessments for startups and provided mitigation reports.</li>
-    <li><b>Intern – IBM Cloud Division</b> (2018)<br>Worked on automation scripts and cloud deployment prototypes.</li>
+    <li><b>iOS Developer Intern</b> – SkyneTBee Artificial Intelligence Pvt Ltd (2023–Present)<br>Developing iOS applications using Swift and SwiftUI, focusing on AI-integrated features and user-friendly interfaces.</li>
+    <li><b>Freelance Developer</b> – Self-Employed (2022–2023)<br>Built iOS prototypes and small-scale apps for local clients using Swift and REST APIs.</li>
+    <li><b>Intern – Mobile App Development</b Dermot of Ireland (2022)<br>Assisted in developing iOS apps with a focus on UI/UX improvements.</li>
   </ul>
 </section>
 
 <footer>
-  <p>&copy; 2025 Vignesh Mathiyalagan. All rights reserved.</p>
+  <p>&copy; 2025 Kavipriya. All rights reserved.</p>
 </footer>
 
 <div class="modal" id="passwordModal">
